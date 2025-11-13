@@ -1,0 +1,125 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+# JVM crash logs
+hsperfdata_
+
+# Editor backup files
+*~
+*.bak
+*.swp
+*.tmp
+
+# Maven Wrapper
+!**/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse
+.settings/
+bin/
+tmp/
+.metadata/
+
+# IntelliJ IDEA
+*.ipr
+*.iws
+*.idea_modules/
+out/
+*.sw?
+
+# Gradle
+.gradle/
+build/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.lastBuiltAt
+.netbeans_automatic_build
+
+# Temporary files
+*.tmp
+*.temp
+
+# Spring Boot
+!.mvn/wrapper/
+
+# Application configuration
+# Note: 允许提交示例配置文件，但排除包含敏感信息的本地配置
+application*.yml
+application*.yaml
+application*.properties
+!application-example*
+!application-dev.*
+config/application-*
+!config/application-example*
+!config/application-dev.*
+
+# Exclude secret files
+*.secret
+*.private
+.env
+.env.local
+.env.*.local
+
+# Exclude local configuration files
+local.config
+
+# Logs
+logs/
+*.log
