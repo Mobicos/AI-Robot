@@ -100,15 +100,10 @@ nbdist/
 !.mvn/wrapper/
 
 # Application configuration
-# Note: 允许提交示例配置文件，但排除包含敏感信息的本地配置
-application*.yml
-application*.yaml
-application*.properties
-!application-example*
-!application-dev.*
-config/application-*
-!config/application-example*
-!config/application-dev.*
+src/main/resources/application-local.yml
+src/main/resources/application-local.yaml
+src/main/resources/application-local.properties
+**/application-secrets.*
 
 # Exclude secret files
 *.secret
@@ -116,6 +111,7 @@ config/application-*
 .env
 .env.local
 .env.*.local
+*.env
 
 # Exclude local configuration files
 local.config
