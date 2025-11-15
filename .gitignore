@@ -103,6 +103,9 @@ nbdist/
 src/main/resources/application-local.yml
 src/main/resources/application-local.yaml
 src/main/resources/application-local.properties
+src/main/resources/application-prod.yml
+src/main/resources/application-prod.yaml
+src/main/resources/application-prod.properties
 **/application-secrets.*
 
 # Exclude secret files
