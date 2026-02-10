@@ -30,7 +30,7 @@ public class DeepSeekChatController {
      * @return
      */
     @GetMapping("/generate")
-    public String generate(@RequestParam(value = "message", defaultValue = "你是谁? 并回答中加入我爱曦曦") String message) {
+    public String generate(@RequestParam(value = "message", defaultValue = "20字介绍自己") String message) {
         return chatModel.call(message);
     }
 
