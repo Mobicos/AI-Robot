@@ -1,6 +1,8 @@
 package com.q.airobotbackend.config;
 
+import com.q.airobotbackend.advisor.MyLoggerAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,8 @@ public class ChatClientConfig {
     public ChatClient chatClient(DeepSeekChatModel chatModel) {
         return ChatClient.builder(chatModel)
                 .defaultSystem("请你扮演一个专业的 Java 架构师，并且用中文回答问题。")
+                .defaultAdvisors(new SimpleLoggerAdvisor(), // 添加 Spring AI 内置的日志记录功能
+                                 new MyLoggerAdvisor())    // 添加自定义的日志打印 Advisor
                 .build();
     }
 }
