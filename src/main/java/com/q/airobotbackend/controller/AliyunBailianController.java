@@ -1,5 +1,6 @@
 package com.q.airobotbackend.controller;
 
+import com.q.airobotbackend.model.AIResponse;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.Generation;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-
-import java.util.Objects;
 
 
 @RestController
@@ -39,7 +38,7 @@ public class AliyunBailianController {
      * @return
      */
     @GetMapping(value = "/generateStream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message) {
+    public Flux<AIResponse> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message) {
         // 构建提示词
         Prompt prompt = new Prompt(new UserMessage(message));
 
@@ -47,7 +46,8 @@ public class AliyunBailianController {
         return chatModel.stream(prompt)
                 .mapNotNull(chatResponse -> {
                     Generation generation = chatResponse.getResult();
-                    return Objects.nonNull(generation) ? generation.getOutput().getText() : null;
+                    String text = generation.getOutput().getText();
+                    return AIResponse.builder().v(text).build();
                 });
 
     }
