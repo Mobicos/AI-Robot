@@ -1,0 +1,49 @@
+#!/bin/sh
+# ============================================================
+# Git commit-msg Hook
+# 校验提交信息是否符合 Conventional Commits 规范
+# 格式: <type>(<scope>): <subject>
+# 安装: cp .githooks/commit-msg .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg
+# 一键安装: git config core.hooksPath .githooks
+# ============================================================
+
+COMMIT_MSG_FILE="$1"
+COMMIT_MSG=$(head -1 "$COMMIT_MSG_FILE")
+
+# 跳过 merge commit
+if echo "$COMMIT_MSG" | grep -qE '^Merge '; then
+  exit 0
+fi
+
+# 跳过 revert commit
+if echo "$COMMIT_MSG" | grep -qE '^Revert '; then
+  exit 0
+fi
+
+# Conventional Commits 正则
+# feat(controller): 添加xxx
+# fix: 修复xxx
+# refactor(config): 重构xxx
+PATTERN="^(feat|fix|refactor|perf|style|test|docs|chore|revert)(\([a-z-]+\))?: .{1,50}$"
+
+if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "❌ 提交信息不符合 Conventional Commits 规范"
+  echo ""
+  echo "  格式: <type>(<scope>): <subject>"
+  echo ""
+  echo "  type:    feat | fix | refactor | perf | style | test | docs | chore | revert"
+  echo "  scope:   controller | config | model | advisor | pom | readme | gitignore (可省略)"
+  echo "  subject: ≤ 50 字符，不以句号结尾"
+  echo ""
+  echo "  示例:"
+  echo "    feat(controller): 添加对话记忆功能"
+  echo "    fix(config): 修复跨域配置不允许凭证"
+  echo "    refactor: 优化 ChatClient 初始化逻辑"
+  echo ""
+  echo "  你的提交: $COMMIT_MSG"
+  echo ""
+  exit 1
+fi
+
+exit 0

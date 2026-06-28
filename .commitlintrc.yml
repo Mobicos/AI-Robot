@@ -1,0 +1,59 @@
+# ============================================================
+# Conventional Commits 校验规则
+# 格式: <type>(<scope>): <subject>
+# ============================================================
+
+# --- type 白名单 ---
+# feat:     新功能
+# fix:      修复 bug
+# refactor: 重构（不改变外部行为）
+# perf:     性能优化
+# style:    格式/命名调整（不影响逻辑）
+# test:     测试相关
+# docs:     文档变更
+# chore:    构建、依赖、CI、杂项配置
+# revert:   回滚提交
+types:
+  - feat
+  - fix
+  - refactor
+  - perf
+  - style
+  - test
+  - docs
+  - chore
+  - revert
+
+# --- scope 白名单（按项目模块） ---
+scopes:
+  - controller
+  - config
+  - model
+  - advisor
+  - pom
+  - readme
+  - gitignore
+
+# 允许省略 scope
+allowEmptyScope: true
+
+# scope 大小写：不敏感
+scopeCase: lower-case
+
+# subject 不以句号结尾
+subjectFullStop: '.'
+
+# subject 最大长度
+subjectMaxLength: 50
+
+# header（type + scope + subject）最大长度
+headerMaxLength: 100
+
+# body 每行最大长度
+bodyLineMaxLength: 120
+
+# type 大小写
+typeCase: lower-case
+
+# 不允许 WIP 提交
+allowWip: false
