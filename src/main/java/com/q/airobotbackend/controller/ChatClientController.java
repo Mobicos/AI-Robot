@@ -38,11 +38,15 @@ public class ChatClientController {
      */
     @GetMapping(value = "/generateStream", produces = "text/html;charset=utf-8")
     public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message,
-                                       @RequestParam(value = "chatId") String chatId) {
+                                       @RequestParam(value = "chatId") String chatId
+    ) {
+
+        // 流式输出
         return chatClient.prompt()
+                .system("请你扮演一名 Java 项目架构师")
                 .user(message) // 提示词
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, chatId))
-                .stream() // 流式输出
+                .stream()
                 .content();
 
     }
